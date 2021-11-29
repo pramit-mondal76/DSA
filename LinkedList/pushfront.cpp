@@ -20,6 +20,24 @@ class list
 {
     node *head;
     node *tail;
+    int searchHealper(node* start,int key)//local verriable
+    {   //base case
+       if(start==NULL)
+       {
+           return -1;
+       }
+       //value matches
+       if(start->data==key)
+       {
+           return 0;
+       }
+       int subIndex=searchHealper(start->next,key);
+       if(subIndex==-1)
+       {
+           return -1;
+       }
+       return subIndex+1;
+    }
 
 public:
     list() // list():head(NULL),tail(NULL){}
@@ -96,23 +114,22 @@ public:
     bool search(node* head,int key)
     {
         node* temp= head;
+        int idx=0;
         while(temp!=NULL)
         {
             if(temp->data == key)
-                return true;
+                return idx;
+            idx++;    
             temp=temp->next;
         }
 
-        return false;
+        return -1;
     }
     //recursively
-    bool searchRecursive(node* head,int key)
+    int searchRecursive(int key)
     {
-        if(head==NULL) return false;
-
-        //recursive case check at head, remaining linked list.
-        if(head->data==key) return true;
-        else return searchRecursive(head->next,key);
+        int idx=searchHealper(head,key);
+        return idx;
     }
 };
 
@@ -134,7 +151,7 @@ int main()
     //l.display();
     int key;
     cin>>key;
-    if(l.searchRecursive(head,key))
+    if(l.searchRecursive(key))//l.search(head,key)
     {
         cout<<"Element found."<<endl;
     }
