@@ -13,30 +13,30 @@ public:
         data = d;
         next = NULL;
     }
-    friend class list;//A friend function can access the private and protected data of a class
+    friend class list; // A friend function can access the private and protected data of a class
 };
 
 class list
 {
     node *head;
     node *tail;
-    int searchHealper(node* start,int key)//local verriable
-    {   //base case
-       if(start==NULL)
-       {
-           return -1;
-       }
-       //value matches
-       if(start->data==key)
-       {
-           return 0;
-       }
-       int subIndex=searchHealper(start->next,key);
-       if(subIndex==-1)
-       {
-           return -1;
-       }
-       return subIndex+1;
+    int searchHealper(node *start, int key) // local verriable
+    {                                       // base case
+        if (start == NULL)
+        {
+            return -1;
+        }
+        // value matches
+        if (start->data == key)
+        {
+            return 0;
+        }
+        int subIndex = searchHealper(start->next, key);
+        if (subIndex == -1)
+        {
+            return -1;
+        }
+        return subIndex + 1;
     }
 
 public:
@@ -107,35 +107,57 @@ public:
                 cout << temp->data << "->";
                 temp = temp->next;
             }
-            cout <<"NULL"<< endl;
+            cout << "NULL" << endl;
         }
     }
-    //search operaion(linear search.)
-    bool search(node* head,int key)
+    // search operaion(linear search.)
+    bool search(node *head, int key)
     {
-        node* temp= head;
-        int idx=0;
-        while(temp!=NULL)
+        node *temp = head;
+        int idx = 0;
+        while (temp != NULL)
         {
-            if(temp->data == key)
+            if (temp->data == key)
                 return idx;
-            idx++;    
-            temp=temp->next;
+            idx++;
+            temp = temp->next;
         }
 
         return -1;
     }
-    //recursively
+    // recursively search
     int searchRecursive(int key)
     {
-        int idx=searchHealper(head,key);
+        int idx = searchHealper(head, key);
         return idx;
+    }
+    void pop_front()
+    {
+        node *temp = head;
+        head = head->next;
+        temp->next = NULL;
+        delete temp;
+    }
+
+    void reverse()//reversed of a linked list
+    {
+        node*c = head;
+        node*p = NULL ;
+        node* n;
+        while (c != NULL)
+        {
+            n=c->next;
+            c->next=p;
+            p=c;
+            c=n;
+        }
+        head=p;
     }
 };
 
 int main()
 {
-    node* head=NULL;
+    node *head = NULL;
     list l;
     l.push_back(1);
     l.push_back(2);
@@ -143,21 +165,17 @@ int main()
     l.push_back(4);
     l.push_front(2);
     l.push_back(5);
-    
+
     l.display();
 
-    //l.insert(100, 3);
+    // l.insert(100, 3);
 
-    //l.display();
-    int key;
-    cin>>key;
-    if(l.searchRecursive(key))//l.search(head,key)
-    {
-        cout<<"Element found."<<endl;
-    }
-    else
-    {
-         cout<<"element not found.";
-    }
+    // l.display();
+    l.insert(42, 2);
+    l.display();
+    l.pop_front();
+    l.display();
+    l.reverse();
+    l.display();
     return 0;
 }
