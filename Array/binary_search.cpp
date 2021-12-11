@@ -27,6 +27,27 @@ int binary_search(int arr[],int n ,int key)
     }
     return -1;
 }
+int binary_recursivesearch(int a[],int s,int e,int key)
+{
+    if(s<=e)
+    {
+        int mid=(s+e)/2;
+        if(a[mid]==key)
+        {
+            return mid;
+        }
+        else if (a[mid]>key)
+        {
+            return binary_recursivesearch(a,s,mid-1,key);
+        }
+        else
+        {
+           return binary_recursivesearch(a,mid+1,e,key);
+        }
+        
+    }
+    return -1;
+}
 
 int main(){
 
@@ -35,15 +56,15 @@ int main(){
     int key;
     cout<<"Enter any key value -";
     cin>>key;
-    int index=binary_search(a,n,key);
-    if(index!=-1)
+    int index=binary_recursivesearch(a,0,n-1,key);
+    if(index == -1)
     {
-        cout<<key<<" is present at index "<<index<<endl;
+      cout<< key <<" is not present in the array";
     }
-    else
-    {
-        cout<<key<<"is not found"<<endl;
-    }
+   else
+   {
+      cout<< key <<" is present at index "<< index <<" in the array";
+   }
 
     
     return 0;
