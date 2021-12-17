@@ -1,5 +1,8 @@
 #include<iostream>
 using namespace std;
+//for inorder tree-left->root->right;
+//1 2 4 -1 -1 5 7 -1 -1 -1 3 -1 6 -1 -1
+//preorder-1 2 4 5 7 3 6
 class node
 {
     public:
@@ -29,21 +32,21 @@ node* buildtree()
     return n; 
 
 }
-void printPreorder(node* root)
+void printpreorder(node* root)
 {
     if(root==NULL)
     {
         return ;
+
     }
     cout<<root->data<<" ";
-    printPreorder(root->left);
-    printPreorder(root->right);
-
-
+    printpreorder(root->left);
+    printpreorder(root->right);
+    
 }
 
 int main(){
     node* root=buildtree();
-    printPreorder(root);
+    printpreorder(root);
     return 0;
 }
