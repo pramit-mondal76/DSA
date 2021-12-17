@@ -2,7 +2,7 @@
 using namespace std;
 //for inorder tree-left->root->right;
 //1 2 4 -1 -1 5 7 -1 -1 -1 3 -1 6 -1 -1
-//Inorder-4 2 7 5 1 3 6
+//preorder-1 2 4 5 7 3 6
 class node
 {
     public:
@@ -32,23 +32,23 @@ node* buildtree()
     return n; 
 
 }
-void printInorder(node* root)
+void printpreorder(node* root)
 {
     if(root==NULL)
     {
         return ;
 
     }
-    printInorder(root->left);
     cout<<root->data<<" ";
-    printInorder(root->right);
+    printpreorder(root->left);
+    printpreorder(root->right);
     
 }
 
 int main(){
     cout<<"enter the values of tree:";
     node* root=buildtree();
-    cout<<"inorder tree is:";
-    printInorder(root);
+    cout<<"preorder tree is:"<<endl;
+    printpreorder(root);
     return 0;
 }

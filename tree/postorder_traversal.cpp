@@ -1,8 +1,8 @@
 #include<iostream>
 using namespace std;
-//for inorder tree-left->root->right;
+//for inorder tree-->left->right->root;
 //1 2 4 -1 -1 5 7 -1 -1 -1 3 -1 6 -1 -1
-//preorder-1 2 4 5 7 3 6
+//postorder- 4 7 5 2 3 6 1
 class node
 {
     public:
@@ -32,21 +32,22 @@ node* buildtree()
     return n; 
 
 }
-void printpreorder(node* root)
+void printPostorder(node* root)
 {
     if(root==NULL)
     {
-        return ;
-
+        return;
     }
+    printPostorder(root->left);
+    printPostorder(root->right);
     cout<<root->data<<" ";
-    printpreorder(root->left);
-    printpreorder(root->right);
-    
 }
 
 int main(){
+    cout<<"enter the values of tree:";
     node* root=buildtree();
-    printpreorder(root);
+    cout<<"post order tree is :";
+    printPostorder(root);
+     
     return 0;
 }
