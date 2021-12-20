@@ -1,4 +1,5 @@
 //Take larger element to the end by repeatedly swapping the adjacent elements.
+//here happen no swapping only shifting.
 #include<iostream>
 using namespace std;
 void display(int array[], int size) {
