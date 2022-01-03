@@ -1,6 +1,6 @@
 #include<iostream>
 using namespace std;
-//for inorder tree-->left->right->root;
+// Postorder (Left, Right, Root) :
 //1 2 4 -1 -1 5 7 -1 -1 -1 3 -1 6 -1 -1
 //postorder- 4 7 5 2 3 6 1
 class node

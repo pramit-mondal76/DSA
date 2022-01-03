@@ -1,6 +1,6 @@
 #include<iostream>
 using namespace std;
-//for inorder tree-left->root->right;
+//Preorder (Root, Left, Right)
 //1 2 4 -1 -1 5 7 -1 -1 -1 3 -1 6 -1 -1
 //preorder-1 2 4 5 7 3 6
 class node
