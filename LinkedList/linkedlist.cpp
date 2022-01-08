@@ -1,237 +1,144 @@
-#include <iostream> //push in front in linkedlist.....
+#include <iostream> 
 using namespace std;
-class list; // forward declaration
 class node
 {
+public:
+    
     int data;
     node *next;
-
-public:
-    //[create a new constructor...]constructor name is same as class.-constructructor is being auutomatically called at the time of object declaration.return type of constructor is the class type
-    node(int d) // node(int d):data(d),next(NULL){}
+    node(int d) 
     {
         data = d;
         next = NULL;
     }
-    ~node() // destructor is a special ,member func that is automatically exucuated,when a objected is created by constructor destructor is destroy the object.
-    // deallocate the memory.that has been allocated for the object by the constructor.
-    {
-        if (next != NULL)
-        {
-            delete next;
-        }
-        cout << "deleting data is " << data << endl;
-    }
-    friend class list; // A friend function can access the private and protected data of a class
+    
 };
 
-class list
+void push_back(node* & head)
 {
-    node *head;
-    node *tail;
-    int searchHealper(node *start, int key) // local verriable
-    {                                       // base case
-        if (start == NULL)
-        {
-            return -1;
-        }
-        // value matches
-        if (start->data == key)
-        {
-            return 0;
-        }
-        int subIndex = searchHealper(start->next, key);
-        if (subIndex == -1)
-        {
-            return -1;
-        }
-        return subIndex + 1;
-    }
-
-public:
-    list() // list():head(NULL),tail(NULL){}
+    int key;
+     cout<<"enter any element:";
+     cin>>key;
+    node* n=new node(key);
+    if(head==NULL)
     {
-        head = NULL;
-        tail = NULL;
+        head=n;
+        return;
     }
-    void push_front()
+    node* temp=head;
+    while(temp->next!=NULL)
     {
-        int data;
-        cout<<"enter any element:";
-        cin>>data;
-        if (head == NULL)
-        {
-            node *n = new node(data);
-            head = tail = n; // when there will not any node..this means that the new node is head and also the tail.
-            return;          // return nothing.
-        }
-        else
-        {
-            node *n = new node(data);
-            n->next = head; // when we add a new node infornt of current node then linked the next of new node with the head .
-            head = n;       // now n will be the head.
-        }
+        temp=temp->next;
     }
-    void push_back()
-    {
-        int data;
-        cout<<"enter any element:";
-        cin>>data;
-        if (head == NULL)
-        {
-            node *n = new node(data);
-            head = tail = n; // when there will not any node..this means that the new node is head and also the tail.
-            return;          // return nothing.
-        }
-        else
-        {
-            node *n = new node(data);
-            tail->next = n;
-            tail = n;
-        }
-    }
-    void insert()
-    {
-        int data;
-        cout<<"enter any element:";
-        int position;
-        cout<<"enter any position:";
-        if (position == 0)
-        {
-            push_front();
-            return;
-        }
-        // otherwise-->
-        node *temp = head;
-        for (int jump = 0; jump < position - 1; jump++)
-        {
-            temp = temp->next; // increament the next of the temp node at the condition of position-1.
-        }
-        node *n = new node(data);
-        n->next = temp->next;
-        temp->next = n;
-    }
-
-    void display()
-    {
-        if (head == NULL)
-        {
-            cout << "No node found" << endl;
-        }
-        else
-        {
-            node *temp = head;
-            while (temp != NULL)
-            {
-                cout << temp->data << "->";
-                temp = temp->next;
-            }
-            cout << "NULL" << endl;
-        }
-    }
-    // search operaion(linear search.)
-    bool search()
-    {
-        node *head;
-        int key;
+   temp->next=n;
+}
+void push_front(node* & head)
+{
+    int key;
         cout<<"enter any element:";
         cin>>key;
+    node* n=new node (key);
+    n->next=head;
+    head=n;
+}
+void pop_front(node* &head)
+{
+    if(head==NULL)
+    {
+        cout<<"LinkedList is empty.";
+    }
+    node* temp=head;
+    head=head->next;
+    temp->next=NULL;
+    cout << "Deleted element is:" << temp->data << endl;
+    delete temp;
+}
+void pop_back(node* &head)
+{
+   if (head == NULL)
+    {
+        cout << "LinkedList is empty.";
+    }
+    else if (head->next == NULL)
+    {
+        cout << "Deleted element is:" << head->data << endl;
+        delete (head);
+        head = NULL;
+    }
+    else
+    {
         node *temp = head;
-        int idx = 0;
-        while (temp != NULL)
+        while (temp->next->next != NULL)
         {
-            if (temp->data == key)
-                return idx;
-            idx++;
             temp = temp->next;
         }
-
-        return -1;
-    }
-    // recursively search
-    int searchRecursive(int key)
-    {
-        int idx = searchHealper(head, key);
-        return idx;
-    }
-    void pop_front()
-    {
-        node *temp = head;
-        head = head->next;
+        cout << "Deleted element is :" << temp->next->data << endl;
+        delete (temp->next);
         temp->next = NULL;
-        delete temp;
     }
-    void pop_end()
+}
+void display(node* head)
+{
+    node* temp=head;
+    while(temp!=NULL)
     {
-        node* temp = head;
-        while (temp->next != NULL)
-        {
-            temp = temp->next;
-        }
-        temp->next = NULL;
-        delete temp;
+        cout<<temp->data<<"->";
+        temp=temp->next;
     }
-    /*~list()
+    cout<<"NULL"<<endl;
+}
+bool search(node* head)
+{
+    int key;
+    cout<<"enter any element:";
+    cin>>key;
+    node* temp= head;
+    while(temp!=NULL)
     {
-        if (head != NULL)
+        if(temp->data==key)
         {
-            delete head;
+            return true;
         }
-    }*/
-    void reverse() // reversed of a linked list
-    {
-        node *c = head;
-        node *p = NULL;
-        node *n;
-        while (c != NULL)
-        {
-            n = c->next;
-            c->next = p;
-            p = c;
-            c = n;
-        }
-        head = p;
+        temp=temp->next;
     }
-};
-
+    return false;
+}
 int main()
 {
-    node *head = NULL;
-    list l; // static object
+    node* head=NULL;
     int n;
     while (1)
     {
-        cout<<"\n1.delete at end\n2.Delete at front \n3.Display\n4.insert at end\n5.insert at front\n6.insert at any position\n7.search\n8.exit"<<endl;
+    cout<<"\n1.delete at end\n2.Delete at front \n3.Display\n4.insert at end\n5.insert at front\n6.search\n7.exit"<<endl;
         cout<<"\nEnter any choice:"<<endl;
         cin>>n;
         switch (n)
         {
         case 1:
-            l.pop_end();
+            pop_back(head);
             break;
         case 2:
-            l.pop_front();
+            pop_front(head);
             break;
         case 3:
-            l.display();
+            display(head);
             break;
         case 4:
-            l.push_back();
+            push_back(head);
             break;
         case 5:
-             l.push_front();
+             push_front(head);
              break;
         case 6:
-            l.insert();
+            cout<<search(head);
             break;
+        
         case 7:
-             l.search();
-             break;  
-        case 8:
             exit(0);           
         default:
-            printf("\nWrong Choice!!");
+           cout<<"wrong choice.";
         }
     }
-    return 0;
+    
+
 }
