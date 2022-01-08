@@ -15,8 +15,14 @@ int linearSearch(int arr[],int n,int key)
 }
 
 int main(){
-    int a[]={1,4,3,2,7,6,8,9};
+    int a[5];
     int n=sizeof(a)/sizeof(int );
+    cout<<"array elements are: ";
+    for(int i=0;i<n;i++)
+    {
+        cin>>a[i];
+    }
+    
     int key;
     cout<<"Enter any key value -";
     cin>>key;
@@ -27,7 +33,7 @@ int main(){
     }
     else
     {
-        cout<<key<<"is not found"<<endl;
+        cout<<key<<" is not found."<<endl;
     }
 
     

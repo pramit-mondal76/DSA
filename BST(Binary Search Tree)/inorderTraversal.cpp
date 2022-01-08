@@ -62,11 +62,14 @@ bool search(node * root,int key)
 
 int main(){
     node* root=NULL;
-    int arr[]={8,3,10,1,6,14,4,7,13};
-    for(int x: arr)
-    {
-        root=insert(root,x);
-    }
+    root=insert(root,7);
+    root=insert(root,6);
+    root=insert(root,4);
+    root=insert(root,9);
+    root=insert(root,12);
+    root=insert(root,10);
+    root=insert(root,11);
+
     printInorder(root);
     int key;
     cout<<"\nEnter any key value:";
