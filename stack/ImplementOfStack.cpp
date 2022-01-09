@@ -2,32 +2,45 @@
 using namespace std;
 #define MAX 5
 int top = -1, stack[MAX];
-
+int isEmpty(){
+    if(top==-1)
+        return 1;
+    else
+        return 0;
+}
+ 
+//check stack is full or not
+int isFull(){
+    if(top==MAX-1)
+        return 1;
+    else   
+        return 0;
+}
 void push()
 {
     int val;
-    if (top == MAX - 1)
-    {
-        cout << "stack is full" << endl;
-    }
-    else
+    if (!isFull())
     {
         cout << "enter any value to push:";
         cin >> val;
         top = top + 1;
         stack[top] = val;
     }
+    else
+    {
+        cout<<"Stack is full."<<endl;
+    }
 }
 void pop()
 {
-    if (top == -1)
+    if (!isEmpty())
     {
-        cout << "stack is empty" << endl;
+       cout<<"Deleted element is:"<<stack[top]<<endl;
+       top=top-1;
     }
     else
     {
-        cout<<"Deleted element is:"<<stack[top]<<endl;
-        top=top-1;
+        cout<<"Stack empty."<<endl;
     }
 }
 void display()

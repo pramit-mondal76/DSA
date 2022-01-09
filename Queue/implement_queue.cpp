@@ -2,33 +2,48 @@
 using namespace std;
 #define size 5
 int front = -1, rear = -1, arr[size];
+int isEmpty(){
+    if(rear == front)
+        return 1;
+    else
+        return 0;
+}
+ 
+//check stack is full or not
+int isFull(){
+    if(rear == size - 1)
+        return 1;
+    else   
+        return 0;
+}
 
 void push()
 {
     int val;
-    if (rear == size - 1)
-    {
-        cout << "\n Queue is full.";
-    }
-    else
+    if (!isFull())
     {
         cout << "enter any value: ";
         cin >> val;
         rear = rear + 1;
         arr[rear] = val;
+        
+    }
+    else
+    {
+        cout << "\n Queue is full.";
     }
 }
 void pop()
 {
-    if (rear == front)
-    {
-        cout << "\nqueue is empty.";
-    }
-    else
+    if (!isEmpty())
     {
         front = front + 1;
         int data = arr[front];
         cout<<"deleted element is"<<data;
+    }
+    else
+    {
+        cout << "\nqueue is empty.";
     }
 }
 void display()
