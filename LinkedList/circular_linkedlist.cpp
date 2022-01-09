@@ -13,7 +13,10 @@ class node{
     }
 };
  
-void insertAtHead(node* &head, int val){
+void insertAtHead(node* &head){
+    int val;
+    cout<<"Enter any value:";
+    cin>>val;
     node* n=new node(val);
  
     if(head==NULL){
@@ -31,14 +34,15 @@ void insertAtHead(node* &head, int val){
     head=n;
 }
  
-void insertAtTail(node* &head, int val){
- 
+void insertAtTail(node* &head){
+    int val;
+    cout<<"Enter any value:";
+    cin>>val;
+    node* n = new node(val);
     if(head==NULL){
-        insertAtHead(head,val);
+        head=n;
         return;
     }
- 
-    node* n = new node(val);
     node* temp=head;
  
     while(temp->next!=head){
@@ -58,12 +62,37 @@ void deleteAtHead(node* &head){
     node* todelete=head;
     temp->next=head->next;
     head=head->next;
- 
+   
     delete todelete;
 }
- 
-void deletion(node* &head, int pos){
- 
+void deleteAtend(node* &head)
+{
+    if (head == NULL)
+    {
+        cout << "LinkedList is empty.";
+    }
+    else if (head->next == head)
+    {
+        cout << "Deleted element is:" << head->data << endl;
+        delete (head);
+        head = NULL;
+    }
+    else
+    {
+        node *temp = head;
+        while (temp->next->next != head)
+        {
+            temp = temp->next;
+        }
+        delete (temp->next);
+        temp->next = NULL;
+        temp->next=head;
+    }
+} 
+void deletion(node* &head){
+     int pos;
+     cout<<"Enter any position:";
+     cin>>pos;
     if(pos==1){
         deleteAtHead(head);
         return;
@@ -99,18 +128,36 @@ void display(node* head){
 int main(){
  
     node* head=NULL;
-    insertAtTail(head,1);
-    insertAtTail(head,2);
-    insertAtTail(head,3);
-    insertAtTail(head,4);
-    display(head);
-    insertAtHead(head,5);
-    display(head);
-    deletion(head,1);
-    display(head);
-    deleteAtHead(head);
-    display(head);
     
+    int n;
+    while (1)
+    {
+    cout<<"\n1.delete at end\n2.Delete at front \n3.Display\n4.insert at end\n5.insert at front\n6.exit"<<endl;
+        cout<<"\nEnter any choice:"<<endl;
+        cin>>n;
+        switch (n)
+        {
+        case 1:
+            deleteAtend(head);
+            break;
+        case 2:
+            deleteAtHead(head);
+            break;
+        case 3:
+            display(head);
+            break;
+        case 4:
+            insertAtTail(head);
+            break;
+        case 5:
+             insertAtHead(head);
+             break;
+        case 6:
+            exit(0);           
+        default:
+           cout<<"wrong choice.";
+        }
+    }
  
     return 0;
 }

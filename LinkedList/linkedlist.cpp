@@ -35,8 +35,8 @@ void push_back(node* & head)
 void push_front(node* & head)
 {
     int key;
-        cout<<"enter any element:";
-        cin>>key;
+    cout<<"enter any element:";
+    cin>>key;
     node* n=new node (key);
     n->next=head;
     head=n;
@@ -139,6 +139,6 @@ int main()
            cout<<"wrong choice.";
         }
     }
-    
+    return 0;
 
 }
