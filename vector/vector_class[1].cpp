@@ -1,11 +1,12 @@
 #include <iostream>
 using namespace std;
+template<typename T>
 class vector
 {
    // data Menbers
-   int *arr;
-   int cs;
-   int ms;
+   T *arr;
+   T cs;
+   T ms;
 
 public:
    vector(int max_size=1)
@@ -13,16 +14,16 @@ public:
 
       cs = 0;
       ms = max_size;
-      arr = new int[ms];
+      arr = new T[ms];
    }
 
    void push_back(int d)
    {
       if (cs == ms)
       {
-         int *oldarr = arr;
+         T *oldarr = arr;
          ms = 2 * ms;
-         arr = new int[ms];
+         arr = new T[ms];
          for (int i = 0; i < cs; i++)
          {
             arr[i] == oldarr[i];
@@ -45,23 +46,23 @@ public:
    {
       return cs=0;
    }
-   int front()
+   T front()
    {
       return arr[0];
    }
-   int back()
+   T back()
    {
       return arr[cs-1];
    }
-   int at(int i)
+   T at(int i)
    {
         return arr[i];
    }
-   int size(){
+   T size(){
       return cs;
 
    }
-   int capacity()
+   T capacity()
    {
       return ms;
    }
@@ -70,7 +71,7 @@ public:
 
 int main()
 {
-   vector v(5);
+   vector<int>v(5);
    v.push_back(1);
    v.push_back(2);
    v.push_back(3);
