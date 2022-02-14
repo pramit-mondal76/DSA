@@ -1,3 +1,4 @@
+//BFS=Breadth first search...
 #include <iostream>
 #include <list>
 using namespace std;
@@ -20,18 +21,9 @@ public:
             l[j].push_back(i);
         }
     }
-    void printlist()
+    void bfs(int source)
     {
-        for (int i = 0; i < V; i++)
-        
-        {
-            cout << i << "-->";
-            for (auto node : l[i])
-            {
-                cout << node << ",";
-            }
-            cout << endl;
-        }
+
     }
 };
 
@@ -45,6 +37,6 @@ int main()
     g.addege(4, 5);
     g.addege(2,3);
     g.addege(3,5);
-    g.printlist();
+     
     return 0;
 }
