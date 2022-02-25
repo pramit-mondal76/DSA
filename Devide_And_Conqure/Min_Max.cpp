@@ -1,6 +1,6 @@
 #include<iostream>
 using namespace std;
-int Minmax(int arr[],int n,int *pmax,int *pmin)//
+int Minmax(int arr[],int n,int *pmax,int *pmin)
 {
     *pmax=arr[0];
     *pmin=arr[0];
