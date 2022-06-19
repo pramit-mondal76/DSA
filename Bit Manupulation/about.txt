@@ -1,0 +1,25 @@
+bitwise operator-
+ And & ,or | ,xor ^ ,one's complement~,binary left shift << ,binary right shift >>
+
+
+ Binary Not-
+ example--
+
+  int a=0;
+  cout<< ~ a;
+
+Q.what will be the ans?
+Ans: the ans is -1.
+
+ explanation ==  at the memory  level 0 is 32 bit number .
+ (it means 0,0,0,0,......upto 32 no.) ,if we do ~ 0 it means all 32 0 will be 1.the first 1 is sign bit,
+ if sign bit is one then ans is -1 and remaining 1  31 bit represents magnitude and they are formed in 2's
+ complement.
+
+
+ Left shift-
+ 5 << 2 ==> 5 * 2^2 == 20;
+ a<<b ==>a * 2 ^b;
+
+ Right shift-
+ a>>b ==> a/2^b;
